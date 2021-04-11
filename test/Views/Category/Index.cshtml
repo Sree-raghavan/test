@@ -1,0 +1,61 @@
+﻿@model IEnumerable<test.Models.Category>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6" >
+            <h2 class="text-success">Category list </h2>
+        </div>
+        <div class="col-6 text-right" >
+            <a asp-controller="Category" asp-action="Create" class="btn btn-outline-secondary">
+              
+                <i class="fas fa-plus"></i> &nbsp;  Create New category
+            
+            </a> 
+            
+        </div>
+    </div>
+    @if(Model.Count()>0)
+            {
+                <table class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                               Order
+                            </th>
+                            <th>
+                                <i class="fas fa-tools"></i> Actions
+                            </th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var obj in Model)
+                {
+                        <tr>
+                            <td width="50%">@obj.Name</td>
+                            <td width="50%">@obj.DisplayOrder</td>
+                            <td class="text-center">
+                                
+                                <div class="w-100 btn-group " role="group">
+                                    <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="delete" class="btn btn-danger">
+                                        <i class="far fa-trash-alt"></i>  Delete                       
+                                    </a>
+                                    <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="update" class="btn btn-primary" >                       
+                                        <i class="fas fa-pen-alt"></i>    Update
+                                    </a>
+                                </div>  
+                            </td>
+                           
+                        </tr>
+                }
+                    </tbody>
+                </table> 
+    }
+    else
+            {
+                <p>No Data Exists</p>
+            }
+</div>
